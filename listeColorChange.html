@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+//$color = ["red","green","white","black","yellow", "blue","orange"];
+//$i = 0;
+//$j = 7;
+    $("li").click(function(){
+	$color1 = '#'+Math.random().toString(16).substr(-6);
+	$color2 = '#'+Math.random().toString(16).substr(-6);
+
+$(this).css({"background-color": $color1, "cursor": "pointer", "border" :"solid 1px black"}); 
+
+        $("p").css("background-color", $color2).slideToggle();
+$(this).html("click on me again to see what happen next !");
+//$i++;
+//$j = $j - 1;
+//if ($i == 7 )
+//$i = 0   
+//if ($j == 0 )
+//$j = 7   
+ });
+ $("p").click(function(){
+	$color1 = '#'+Math.random().toString(16).substr(-6);
+	$color2 = '#'+Math.random().toString(16).substr(-6);
+$(this).css({"background-color": $color1, "cursor": "pointer", "border" :"solid 1px black"}); 
+$(this).next().css("background-color", $color2).slideToggle();
+$(this).html("click on me again to see what happen next !");
+ });
+});
+</script>
+</head>
+<body>
+<ul>
+<li>If you click on me, something will happen.</li>
+<p>Click me away!</p>
+<p>Click me too!</p></ul>
+<script>
+$(document).unload(function() {
+console.log('a');
+  return "Bye now!";
+});
+
+</script>
+</body>
+</html>
+

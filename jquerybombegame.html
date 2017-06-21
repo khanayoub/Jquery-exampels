@@ -1,0 +1,99 @@
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>fadeTo demo</title>
+  <style>
+  div, .elem {
+    width: 80px;
+    height: 40px;
+    top: 20px;
+    margin: 20px;
+    position: absolute;
+    padding-top: 50px;
+  }
+  .elem {
+    background: green;
+    text-align: center;
+  }
+  .row {
+    position:relative;
+  }
+  div {
+    background: black;
+  }
+  </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+<body>
+
+<p class="row">
+<p class="elem">safe</p>
+<div></div>
+<p class="elem">safe</p>
+<div></div>
+<p class="elem">bomb!</p>
+<div></div>
+</p>
+
+<p class="row">
+<p class="elem">safe</p>
+<div></div>
+<p class="elem">safe</p>
+<div></div>
+<p class="elem">bomb!</p>
+<div></div>
+</p>
+
+<p class="row">
+<p class="elem">safe</p>
+<div></div>
+<p class="elem">safe</p>
+<div></div>
+<p class="elem">bomb!</p>
+<div></div>
+</p>
+<script>
+var getPos = function( n ) {
+  return (Math.floor( n ) * 90) + "px";
+};
+$( ".elem" ).each(function( n ) {
+  var r = Math.floor( Math.random() * 7 );
+  var tmp = $( this ).text();
+  $( this ).text( $( ".elem:eq(" + r + ")" ).text() );
+  $( ".elem:eq(" + r + ")" ).text( tmp );
+   $( this ).css( "left", getPos( n ) );
+});
+$( "div" )
+  .each(function( n ) {
+    $( this ).css( "left", getPos( n ) );
+  })
+  .css( "cursor", "pointer" )
+  .click( function() {
+    $( this ).fadeTo( 250, 0.25, function() {
+      $( this )
+        .css( "cursor", "" )
+        .prev()
+          .css({
+            "font-weight": "bolder",
+            "font-style": "italic"
+          });
+    });
+  });
+  $( ".elem" ).each(function( ) {
+  if ($( this ).text() == "bomb!")
+  {
+     $( this ).css( "background-color", "red" );
+  }
+  else
+  {
+      $( this ).css( "background-color", "green" );
+  }
+    });
+</script>
+ 
+</body>
+</html>
+
